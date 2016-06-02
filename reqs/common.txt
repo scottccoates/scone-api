@@ -17,3 +17,5 @@ django-redis==4.4.3
 redis==2.10.5
 rq==0.6.0
 pygeocoder==1.2.5
+celery==3.1.23
+django-celery==3.1.17

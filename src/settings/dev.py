@@ -20,6 +20,16 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 SECRET_KEY = r"1p)g!_znl4-_8gj%)1yfm7_##%3sj87y1u6b(zcr^fa11o5h2w"
 ########## END AUTH CONFIGURATION
 
+########## CELERY CONFIGURATION
+# See: http://docs.celeryproject.org/en/latest/configuration.html#broker-transport
+BROKER_URL = 'django://'
+
+# See: http://docs.celeryproject.org/en/latest/configuration.html#celery-result-backend
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+
+CELERYD_CONCURRENCY = 1
+########## END CELERY CONFIGURATION
+
 ########## DATABASE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
