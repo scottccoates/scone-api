@@ -1,6 +1,6 @@
 from datetime import timedelta
 from django.utils import timezone
-from src.aggregates.engagement_opportunity.models import EngagementOpportunity
+from src.domain.engagement_opportunity.models import EngagementOpportunity
 
 
 def purge_old_data():

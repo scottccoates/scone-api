@@ -1,0 +1,1 @@
+default_app_config = 'src.domain.engagement_opportunity.engagement_opportunity_config.EngagementOpportunityConfig'

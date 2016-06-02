@@ -1,4 +1,4 @@
-from src.aggregates.profile.models import Profile
+from src.domain.profile.models import Profile
 from src.apps.assignment_delivery import constants
 from src.apps.assignment_delivery.delivery_data_providers.base_delivery_data_provider import BaseDeliveryDataProvider
 

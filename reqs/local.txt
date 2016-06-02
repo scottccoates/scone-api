@@ -1,7 +1,4 @@
 -r common.txt
-django-debug-toolbar==0.9.4
-pytest==2.9.1
-pytest-django==2.6.1
-django-extensions==1.2.4
-factory-boy==2.4.0
-fake-factory==0.4.0
+pytest==2.9.2
+pytest-django==2.9.1
+factory_boy==2.7.0

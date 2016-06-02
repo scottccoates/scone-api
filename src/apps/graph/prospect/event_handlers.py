@@ -1,6 +1,6 @@
 from django.dispatch import receiver
 
-from src.aggregates.prospect.signals import created
+from src.domain.prospect.signals import created
 from src.apps.graph.prospect.services import prospect_graph_tasks
 from src.libs.common_domain.decorators import event_idempotent
 

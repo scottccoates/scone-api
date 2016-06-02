@@ -1,6 +1,6 @@
 from django.dispatch import receiver
 
-from src.aggregates.topic.signals import created, added_subtopic, deleted, removed_subtopic
+from src.domain.topic.signals import created, added_subtopic, deleted, removed_subtopic
 from src.apps.graph.topic.services import topic_graph_tasks
 from src.libs.common_domain.decorators import event_idempotent
 

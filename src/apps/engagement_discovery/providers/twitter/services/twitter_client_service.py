@@ -1,6 +1,6 @@
 from itertools import groupby
 
-from src.aggregates.profile.models import Profile
+from src.domain.profile.models import Profile
 from src.apps.engagement_discovery import constants
 from src.apps.engagement_discovery.providers.twitter.twitter_engagement_discovery_objects import \
   TwitterEngagementOpportunityDiscoveryObject
@@ -10,7 +10,7 @@ from src.libs.nlp_utils.services.enums import NamedEntityTypeEnum
 from src.libs.python_utils.logging.logging_utils import log_wrapper
 from src.libs.social_utils.providers.twitter import twitter_client_service
 
-from src.aggregates.profile.services.profile_service import get_profile_from_provider_info
+from src.domain.profile.services.profile_service import get_profile_from_provider_info
 from src.apps.engagement_discovery.enums import ProviderEnum, ProviderActionEnum
 import logging
 

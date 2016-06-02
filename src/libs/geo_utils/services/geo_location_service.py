@@ -1,9 +1,9 @@
 import sys
+
 from pygeocoder import Geocoder
-from pygeolib import GeocoderError
+
 from src.libs.geo_utils.complete_address import CompleteAddress
 from src.libs.geo_utils.signals import location_geocoded
-
 
 _geocoder = Geocoder()
 

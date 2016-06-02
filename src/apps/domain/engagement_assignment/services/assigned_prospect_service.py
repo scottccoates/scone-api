@@ -1,7 +1,7 @@
 from dateutil.relativedelta import relativedelta
 from django.utils import timezone
-from src.aggregates.engagement_opportunity.services import engagement_opportunity_service
-from src.aggregates.profile.services import profile_service
+from src.domain.engagement_opportunity.services import engagement_opportunity_service
+from src.domain.profile.services import profile_service
 from src.apps.domain.engagement_assignment.models import AssignedProspect
 from src.apps.domain import constants
 

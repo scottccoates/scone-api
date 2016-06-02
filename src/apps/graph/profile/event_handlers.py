@@ -1,8 +1,8 @@
 from django.dispatch import receiver
 
-from src.aggregates.profile.signals import created
-from src.aggregates.prospect.services import prospect_service
-from src.aggregates.topic.services import topic_service
+from src.domain.profile.signals import created
+from src.domain.prospect.services import prospect_service
+from src.domain.topic.services import topic_service
 from src.apps.graph import constants
 from src.apps.graph.profile.services import profile_graph_tasks
 from src.libs.common_domain.decorators import event_idempotent

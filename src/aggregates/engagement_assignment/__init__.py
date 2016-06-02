@@ -1,1 +1,0 @@
-default_app_config = 'src.aggregates.engagement_assignment.engagement_assignment_config.EngagementAssignmentConfig'

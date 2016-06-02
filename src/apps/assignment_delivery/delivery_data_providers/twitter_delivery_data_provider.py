@@ -1,4 +1,4 @@
-from src.aggregates.engagement_opportunity.models import EngagementOpportunity
+from src.domain.engagement_opportunity.models import EngagementOpportunity
 from src.apps.assignment_delivery import constants
 from src.apps.assignment_delivery.delivery_data_providers.base_delivery_data_provider import BaseDeliveryDataProvider
 

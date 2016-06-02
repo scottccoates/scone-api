@@ -1,9 +1,9 @@
 from dateutil.relativedelta import relativedelta
 from django.utils import timezone
-from src.aggregates.engagement_assignment.services import engagement_assignment_service
-from src.aggregates.engagement_opportunity.services import engagement_opportunity_service
-from src.aggregates.profile.services import profile_service
-from src.aggregates.prospect.services import prospect_service
+from src.domain.engagement_assignment.services import engagement_assignment_service
+from src.domain.engagement_opportunity.services import engagement_opportunity_service
+from src.domain.profile.services import profile_service
+from src.domain.prospect.services import prospect_service
 from src.apps.assignment_delivery import constants
 from src.apps.assignment_delivery.delivery_data_providers.linkedin_delivery_data_provider import \
   LinkedinDeliveryDataProvider

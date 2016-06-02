@@ -1,7 +1,7 @@
 from django.dispatch import receiver
-from src.aggregates.engagement_opportunity.signals import created, added_topic
-from src.aggregates.profile.services import profile_service
-from src.aggregates.topic.services import topic_service
+from src.domain.engagement_opportunity.signals import created, added_topic
+from src.domain.profile.services import profile_service
+from src.domain.topic.services import topic_service
 from src.apps.graph.engagement_opportunity.services import engagement_opportunity_graph_tasks
 from src.libs.common_domain.decorators import event_idempotent
 

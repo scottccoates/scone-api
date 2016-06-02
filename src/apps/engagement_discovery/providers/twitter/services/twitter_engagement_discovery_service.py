@@ -1,5 +1,5 @@
 import logging
-from src.aggregates.profile.services import profile_service
+from src.domain.profile.services import profile_service
 
 from src.apps.engagement_discovery.engagement_discovery_objects import EngagementOpportunityDiscoveryObject
 from src.apps.engagement_discovery.providers.twitter.services import twitter_client_service

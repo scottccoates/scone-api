@@ -1,4 +1,5 @@
-from celery import shared_task
+
+
 
 from src.apps.graph.client.services import client_graph_service
 import logging
@@ -6,12 +7,12 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-@shared_task
+#@shared_task
 def create_client_in_graphdb_task(client_uid):
   return client_graph_service.create_client_in_graphdb(client_uid)['client_uid']
 
 
-@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def create_ta_topic_in_graphdb_task(self, client_uid, ta_topic_uid, topic_uid):
   try:
     return client_graph_service.create_ta_topic_in_graphdb(client_uid, ta_topic_uid, topic_uid)['ta_topic_uid']
@@ -29,7 +30,7 @@ def create_ta_topic_in_graphdb_task(self, client_uid, ta_topic_uid, topic_uid):
     self.retry(exc=ex)
 
 
-@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def delete_client_in_graphdb_task(self, client_uid):
   try:
     return client_graph_service.delete_client_in_graphdb(client_uid)
@@ -38,7 +39,7 @@ def delete_client_in_graphdb_task(self, client_uid):
     self.retry(exc=e)
 
 
-@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def delete_ta_topic_in_graphdb_task(self, client_uid, ta_topic_uid):
   try:
     return client_graph_service.delete_ta_topic_in_graphdb(client_uid, ta_topic_uid)

@@ -1,4 +1,4 @@
-from src.aggregates.engagement_assignment.signals import delivered
+from src.domain.engagement_assignment.signals import delivered
 from django.dispatch import receiver
 from src.apps.domain.engagement_assignment.services import assigned_prospect_tasks
 

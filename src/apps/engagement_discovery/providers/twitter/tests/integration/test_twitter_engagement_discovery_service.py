@@ -1,6 +1,6 @@
 import pytest
-from src.aggregates.topic.enums import TopicCategoryEnum
-from src.aggregates.topic.models import Topic
+from src.domain.topic.enums import TopicCategoryEnum
+from src.domain.topic.models import Topic
 from src.apps.engagement_discovery.enums import ProviderActionEnum, ProviderEnum
 from src.apps.engagement_discovery.providers.twitter.services import twitter_engagement_discovery_service, \
   twitter_client_service

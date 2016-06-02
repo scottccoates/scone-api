@@ -1,7 +1,7 @@
 from django.dispatch import receiver
 
-from src.aggregates.client.signals import created, added_ta_topic, deleted, removed_ta_topic
-from src.aggregates.topic.services import topic_service
+from src.domain.client.signals import created, added_ta_topic, deleted, removed_ta_topic
+from src.domain.topic.services import topic_service
 from src.apps.graph.client.services import client_graph_tasks
 from src.libs.common_domain.decorators import event_idempotent
 

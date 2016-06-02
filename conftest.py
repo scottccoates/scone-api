@@ -1,20 +1,18 @@
 import os
 import pytest
+import django
 
 # region DJ Settings
-#http://pytest-django.readthedocs.org/en/latest/configuring_django.html#using-django-configurations
+# http://pytest-django.readthedocs.org/en/latest/configuring_django.html#using-django-configurations
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.settings.dev_testing")
-# endregion
+django.setup()
 
-# region Plugins
-#this line is required in order to use the db_with_migrations fixture
-#http://pytest.org/latest/plugins.html#requiring-loading-plugins-in-a-test-module-or-conftest-file
-pytest_plugins = "src.libs.django_utils.testing.utils"
+
 # endregion
 
 # region test type command line options
-#configure which tests run when: http://pytest.org/latest/example/simple
-# .html#control-skipping-of-tests-according-to-command-line-option
+# configure which tests run when: http://pytest.org/latest/example/simple.html#control-skipping-of-tests-according-to
+# -command-line-option
 def pytest_addoption(parser):
   parser.addoption("--test-type", default='unit', help="run specific test type (unit, integration, etc.)")
 

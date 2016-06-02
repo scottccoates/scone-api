@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-from src.aggregates.engagement_opportunity.models import EngagementOpportunity
-from src.aggregates.engagement_opportunity.services import engagement_opportunity_service
-from src.aggregates.profile.models import Profile
-from src.aggregates.profile.services import profile_service
+from src.domain.engagement_opportunity.models import EngagementOpportunity
+from src.domain.engagement_opportunity.services import engagement_opportunity_service
+from src.domain.profile.models import Profile
+from src.domain.profile.services import profile_service
 from src.apps.assignment_delivery import constants
 
 
