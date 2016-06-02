@@ -43,11 +43,12 @@ MIDDLEWARE_CLASSES = (
   'django.middleware.gzip.GZipMiddleware',
   'django.middleware.security.SecurityMiddleware',
   'django.middleware.common.CommonMiddleware',
+  'django.contrib.sessions.middleware.SessionMiddleware',
   'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 ########## END MIDDLEWARE CONFIGURATION
 
-########## APP CONFIGURATION
+########## TEMPLATE CONFIGURATION
 TEMPLATES = [
   {
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -63,12 +64,19 @@ TEMPLATES = [
     },
   },
 ]
-########## END APP CONFIGURATION
+########## END TEMPLATE CONFIGURATION
+
+########## STATIC FILE CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+
+STATIC_URL = '/static/'
+########## END STATIC FILE CONFIGURATION
 
 ########## APP CONFIGURATION
 DJANGO_APPS = (
   # Default Django apps:
   'django.contrib.admin',
+  'django.contrib.auth',
   'django.contrib.contenttypes',
   'django.contrib.staticfiles',
 )

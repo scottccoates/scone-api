@@ -4,14 +4,16 @@ from os.path import join, normpath
 
 from .common import *
 
-
 # ######### DEBUG CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
 ########## END DEBUG CONFIGURATION
+
+########## TEMPLATE CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
+
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
+########## END TEMPLATE CONFIGURATION
 
 ########## AUTH CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
@@ -122,7 +124,7 @@ SENDGRID_PASSWORD = "Password"
 MASHAPE_API_KEY = "Mashape Api Key"
 ########## END EXTERNAL API CONFIGURATION
 
-#Get a developer's local overrides (if they exist)
+# Get a developer's local overrides (if they exist)
 try:
   from .dev_override import *
 except:
