@@ -24,7 +24,10 @@ def get_topic(pk):
 
 
 def get_all_topics():
-  return Topic.objects.select_related('subtopics').all()
+  return Topic.objects.all()
+  # return Topic.objects.select_related('subtopics').all()
+  # todo remove the select_related call here - might need to use prefetch
+  # http://stackoverflow.com/questions/23121850/select-related-with-reverse-foreign-keys
 
 
 def get_active_topics():

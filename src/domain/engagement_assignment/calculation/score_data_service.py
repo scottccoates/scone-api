@@ -6,7 +6,11 @@ from src.libs.numpy_utils import array_utils
 
 
 def _get_client_score_bounds(client):
-  return {ProviderEnum.reddit: 0}
+  return {'prospect_upper_bound_score': 10,
+    ProviderEnum.reddit: 0, ProviderEnum.twitter: {'engagement_opportunity_upper_bound_score':10,
+                                                         'profile_upper_bound_score': 10,
+
+                                                         }}
 
 
 def get_client_score_data(client):

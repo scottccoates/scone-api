@@ -125,12 +125,14 @@ def _get_assigned_calc_objects(assignment_attrs):
     for assigned_entity_uid in assigned_entity_uids:
 
       if assignment_attr == constants.ASSIGNED_EO_UIDS:
-        assigned_entity = engagement_opportunity_service.get_engagement_opportunity_from_uid(assigned_entity_uid)
+        assigned_entity = engagement_opportunity_service.get_engagement_opportunity(assigned_entity_uid)
+        # todo - why did I have to change from get_engagement_opportunity_from_uid to just get_engagement_opportunity?
+        # look at profile below too.
         provider_type = assigned_entity.provider_type
         entity_type = constants.EO
         prospect = assigned_entity.profile.prospect
       elif assignment_attr == constants.ASSIGNED_PROFILE_UIDS:
-        assigned_entity = profile_service.get_profile_from_uid(assigned_entity_uid)
+        assigned_entity = profile_service.get_profile(assigned_entity_uid)
         provider_type = assigned_entity.provider_type
         entity_type = constants.PROFILE
         prospect = assigned_entity.prospect

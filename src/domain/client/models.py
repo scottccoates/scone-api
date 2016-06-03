@@ -98,7 +98,8 @@ class Client(models.Model, AggregateBase):
 
         for ta in self._ta_topics_list:
           # add actually does a save internally, hitting the db
-          self.ta_topics.add(ta, bulk=False)
+          ta.client_id = self.id
+          ta.save()
 
         for ta in self._ta_topics_delete_list:
           ta.delete()

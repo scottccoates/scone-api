@@ -21,7 +21,8 @@ def save_or_update(engagement_assignment):
 
 def create_engagement_assignment(client, assignment_attrs):
   engagement_assignment = factories.create_engagement_assignment(client, assignment_attrs)
-  save_or_update(engagement_assignment)
+  # save_or_update(engagement_assignment)
+  # todo save me
   return engagement_assignment
 
 
@@ -82,7 +83,9 @@ def refresh_assignments(client):
 
         try:
           create_engagement_assignment(client, assignment_attrs)
-        except:
+        except Exception as e:
+          print('error cerating ea', e)
+          # todo why is this not loggign?
           logger.warn("Error creating assignment", exc_info=True)
 
         counter += 1

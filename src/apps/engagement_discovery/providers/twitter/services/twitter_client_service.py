@@ -143,8 +143,9 @@ def _get_valid_users_from_tweets(tweets_from_users, named_entity_type, _named_en
         name_for_user = tweets[0]['user']['name']
 
         try:
-          if _named_entity_service.get_entity_type(name_for_user) == named_entity_type:
-            valid_user = True
+          # if _named_entity_service.get_entity_type(name_for_user) == named_entity_type:
+          # todo just assume a valid user for now until we fix this
+          valid_user = True
         except:
           logger.exception("Error getting entity type. name: %s", name_for_user)
           valid_user = False

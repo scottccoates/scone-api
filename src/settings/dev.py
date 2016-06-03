@@ -58,10 +58,8 @@ GRAPH_DB_PASSWORD = None
 
 LOGGING['handlers']['console_handler'] = {
   'level': 'DEBUG',
-  'class': 'rq.utils.ColorizingStreamHandler',
-  # the diff between '()' and 'class' is that '()' could be a class OR some func. Refer to logging/config.py#695
-  # http://stackoverflow.com/questions/9212228/using-custom-formatter-classes-with-pythons-logging-config-module
-  'formatter': 'local_standard',
+  'class': 'logging.StreamHandler',
+  'formatter': 'local_standard'
 }
 
 LOGGING['handlers']['file_handler'] = {
@@ -70,8 +68,18 @@ LOGGING['handlers']['file_handler'] = {
   'filename': 'logs/app.log',
   'maxBytes': 1024 * 1024 * 5,  # 5 MB
   'backupCount': 5,
+  'formatter': 'local_standard',
   'encoding': 'UTF-8',
-  'formatter': 'local_standard'
+}
+
+LOGGING['handlers']['request_handler'] = {
+  'level': 'DEBUG',
+  'class': 'logging.handlers.RotatingFileHandler',
+  'filename': 'logs/django_request.log',
+  'maxBytes': 1024 * 1024 * 5,  # 5 MB
+  'backupCount': 5,
+  'formatter': 'local_standard',
+  'encoding': 'UTF-8',
 }
 
 LOGGING['handlers']['exception_handler'] = {
@@ -80,8 +88,8 @@ LOGGING['handlers']['exception_handler'] = {
   'filename': 'logs/error.log',
   'maxBytes': 1024 * 1024 * 5,  # 5 MB
   'backupCount': 5,
+  'formatter': 'local_standard',
   'encoding': 'UTF-8',
-  'formatter': 'local_standard'
 }
 
 app_logger = {
@@ -91,12 +99,25 @@ app_logger = {
 }
 
 LOGGING['loggers'] = {
-  '': app_logger,
-  'django.request': app_logger,
-  # django.request doesn't propagate by default https://docs.djangoproject.com/en/dev/topics/logging/#django-request
-  'rq.worker': app_logger,
-  # rq.worker is explicitly defined here because it's imported in common.py before logging is configured and is
-  # subsequently disabled (disable_existing_loggers=True) so we need to provide an entry here to enable it.
+  '': {
+    'handlers': ['console_handler', 'file_handler', 'exception_handler'],
+    'level': 'DEBUG',
+    'propagate': True
+  },
+  'django.request': {
+    'handlers': ['request_handler', 'exception_handler', 'console_handler'],
+    'level': 'DEBUG',
+    'propagate': False
+  },
+  'celery': {
+    'level': 'INFO',
+  },
+  'django.db.backends': {
+    'level': 'INFO',
+  },
+  'src.aggregates': app_logger,
+  'src.apps': app_logger,
+  'src.libs': app_logger,
 }
 ########## END LOGGING CONFIGURATION
 
