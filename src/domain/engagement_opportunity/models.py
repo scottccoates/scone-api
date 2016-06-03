@@ -86,7 +86,7 @@ class EngagementOpportunity(models.Model, AggregateBase):
         super().save(*args, **kwargs)
 
         for topic in self._topics_list:
-          self.topics.add(topic)
+          self.topics.add(topic, bulk=False)
 
         for event in self._uncommitted_events:
           Event.objects.create(name=event.event_fq_name, version=event.version, data=event.kwargs)

@@ -1,3 +1,5 @@
+from celery import shared_task
+
 from src.domain.topic.enums import TopicCategoryEnum
 from src.domain.topic.services import topic_service
 from src.apps.engagement_discovery.providers.reddit.services.reddit_engagement_discovery_service import \
@@ -10,7 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-#@shared_task
+@shared_task
 def discover_engagement_opportunities_from_subreddits_task():
   topics_to_run = topic_service.get_active_topics()
 
@@ -20,7 +22,7 @@ def discover_engagement_opportunities_from_subreddits_task():
         discover_engagement_opportunities_from_subreddit_task.delay(subtopic.id)
 
 
-#@shared_task(bind=True, max_retries=2, default_retry_delay=30)
+@shared_task(bind=True, max_retries=2, default_retry_delay=30)
 def discover_engagement_opportunities_from_subreddit_task(self, subtopic_id):
   subtopic = topic_service.get_subtopic(subtopic_id)
   try:

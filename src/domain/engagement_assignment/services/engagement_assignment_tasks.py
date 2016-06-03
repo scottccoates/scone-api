@@ -1,3 +1,5 @@
+from celery import shared_task, group
+
 from src.domain.engagement_assignment.services import engagement_assignment_service
 from src.domain.client.services import client_service
 
@@ -8,7 +10,7 @@ from src.libs.python_utils.logging.logging_utils import log_wrapper
 logger = logging.getLogger(__name__)
 
 
-#@shared_task
+@shared_task
 def refresh_assignments_for_clients_task():
   group = get_refresh_assignments_for_clients_group()
   group.delay()
@@ -22,7 +24,7 @@ def get_refresh_assignments_for_clients_group():
   return ret_val
 
 
-#@shared_task
+@shared_task
 def refresh_assignments_for_client_task(client_id):
   log_message = (
     "Refresh assignments task for client_id: %s",

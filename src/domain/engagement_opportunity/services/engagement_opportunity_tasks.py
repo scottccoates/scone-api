@@ -1,5 +1,4 @@
-
-
+from celery import shared_task
 
 from src.domain.engagement_opportunity.services import engagement_opportunity_service
 from src.domain.profile.services import profile_service
@@ -13,7 +12,7 @@ from src.libs.python_utils.logging.logging_utils import log_wrapper
 logger = logging.getLogger(__name__)
 
 
-#@shared_task
+@shared_task
 def create_engagement_opportunity_task(profile_id, engagement_opportunity_discovery_object):
   engagement_opportunity_discovery_object = deserialize_engagement_opportunity_discovery_object(
     engagement_opportunity_discovery_object
@@ -34,7 +33,7 @@ def create_engagement_opportunity_task(profile_id, engagement_opportunity_discov
   return ret_val
 
 
-#@shared_task
+@shared_task
 def add_topic_to_engagement_opportunity_task(engagement_opportunity_id, topic_id):
   eo_topic_log_message = (
     "Begin add eo topic. eo_id: %s, topic_id: %s",

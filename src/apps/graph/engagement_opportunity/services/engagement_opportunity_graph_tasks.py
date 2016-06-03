@@ -1,13 +1,16 @@
 
 
 import logging
+
+from celery import shared_task
+
 from src.apps.graph.engagement_opportunity.services import engagement_opportunity_graph_service
 from src.libs.python_utils.logging.logging_utils import log_wrapper
 
 logger = logging.getLogger(__name__)
 
 
-#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def create_engagement_opportunity_in_graphdb_task(self, engagement_opportunity_uid, profile_uid):
   log_message = (
     "Add eo to graphdb. eo_uid: %s, profile_uid: %s",
@@ -32,7 +35,7 @@ def create_engagement_opportunity_in_graphdb_task(self, engagement_opportunity_u
     self.retry(exc=ex)
 
 
-#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def add_topic_to_engagement_opportunity_in_graphdb_task(self, engagement_opportunity_uid,
                                                         engagement_opportunity_topic_uid,
                                                         topic_uid):

@@ -1,13 +1,16 @@
 
 
 import logging
+
+from celery import shared_task
+
 from src.apps.graph.profile.services import profile_graph_service
 from src.libs.python_utils.logging.logging_utils import log_wrapper
 
 logger = logging.getLogger(__name__)
 
 
-#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def create_profile_in_graphdb_task(self, profile_uid, prospect_uid, kwargs=None):
   if not kwargs: kwargs = {}
 

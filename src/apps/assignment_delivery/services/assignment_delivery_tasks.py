@@ -1,12 +1,11 @@
-
-
+from celery import shared_task, chord, chain
 
 from src.domain.client.services import client_service
 from src.domain.engagement_assignment.services import engagement_assignment_tasks, engagement_assignment_service
 from src.apps.assignment_delivery.services import assignment_delivery_service
 
 
-#@shared_task
+@shared_task
 def create_and_deliver_assignments_to_drive_for_clients_task():
   chord(
     engagement_assignment_tasks.get_refresh_assignments_for_clients_group(),
@@ -14,7 +13,7 @@ def create_and_deliver_assignments_to_drive_for_clients_task():
   ).delay()
 
 
-#@shared_task
+@shared_task
 def deliver_assignments_to_drive_for_clients_task():
   all_clients = client_service.get_enabled_clients()
   for client in all_clients:
@@ -27,13 +26,13 @@ def deliver_assignments_to_drive_for_clients_task():
     ).delay()
 
 
-#@shared_task
+@shared_task
 def get_new_client_assignments_task(client_id):
   client = client_service.get_client_from_id(client_id)
   return list(assignment_delivery_service.get_new_client_assignments_ids(client))
 
 
-#@shared_task
+@shared_task
 def prepare_assignments_for_delivery_task(assignment_ids):
   for aid in assignment_ids:
     ea = engagement_assignment_service.get_engagement_assignment(aid)
@@ -42,7 +41,7 @@ def prepare_assignments_for_delivery_task(assignment_ids):
   return assignment_ids
 
 
-#@shared_task
+@shared_task
 def write_assignments_to_drive_task(assignment_ids, client_id):
   client = client_service.get_client_from_id(client_id)
   assignments = engagement_assignment_service.get_engagement_assignments_by_score(assignment_ids)

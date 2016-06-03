@@ -115,7 +115,7 @@ class Topic(models.Model, AggregateBase):
         super().save(*args, **kwargs)
 
         for subtopic in self._subtopics_list:
-          self.subtopics.add(subtopic)
+          self.subtopics.add(subtopic,bulk=False)
 
         for subtopic in self._subtopics_delete_list:
           subtopic.delete()

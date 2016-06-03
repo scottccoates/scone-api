@@ -1,4 +1,4 @@
-
+from celery import shared_task
 
 from src.apps.graph.topic.services import topic_graph_service
 import logging
@@ -6,12 +6,12 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-#@shared_task
+@shared_task
 def create_topic_in_graphdb_task(topic_uid):
   return topic_graph_service.create_topic_in_graphdb(topic_uid)['topic_uid']
 
 
-#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def create_subtopic_in_graphdb_task(self, topic_uid, subtopic_uid):
   try:
     return topic_graph_service.create_subtopic_in_graphdb(topic_uid, subtopic_uid)['topic_uid']
@@ -29,7 +29,7 @@ def create_subtopic_in_graphdb_task(self, topic_uid, subtopic_uid):
     self.retry(exc=ex)
 
 
-#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def delete_topic_in_graphdb_task(self, topic_uid):
   try:
     return topic_graph_service.delete_topic_in_graphdb(topic_uid)
@@ -38,7 +38,7 @@ def delete_topic_in_graphdb_task(self, topic_uid):
     self.retry(exc=e)
 
 
-#@shared_task(bind=True, max_retries=3, default_retry_delay=180)
+@shared_task(bind=True, max_retries=3, default_retry_delay=180)
 def remove_subtopic_in_graphdb_task(self, topic_uid, subtopic_uid):
   try:
     return topic_graph_service.delete_subtopic_in_graphdb(topic_uid, subtopic_uid)
