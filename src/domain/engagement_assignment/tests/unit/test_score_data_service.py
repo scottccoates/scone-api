@@ -26,7 +26,7 @@ def _get_array_utils():
 def test_score_data_service_assigns_correct_prospect_upper_bound_score():
   score_data_repo_mock = _get_score_data_repo()
   array_utils_mock = _get_array_utils()
-  _, ret_val = score_data_service.set_client_bounds_score(client_1, score_data_repo_mock, array_utils_mock)
-  assert round(ret_val[constants.PROSPECT][constants.SCORE], 3) == 0.214
+  score_data_service.set_client_bounds_score(client_1, score_data_repo_mock, array_utils_mock)
+  score_data_repo_mock.save_client_prospect_bounds_score.assert_called_with(client_1, 10.)
 
 # endregion test bounds

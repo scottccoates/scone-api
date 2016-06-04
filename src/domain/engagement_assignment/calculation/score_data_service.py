@@ -28,9 +28,9 @@ def set_client_bounds_score(client, _score_data_repository=None, _array_utils=No
   if not _array_utils: _array_utils = array_utils
 
   ret_val = {}
-  recent_scores = score_data_repository.get_recent_client_scores(client)
+  recent_scores = _score_data_repository.get_recent_client_scores(client)
 
-  prospect_scores = recent_scores.pop(constants.PROSPECT_RECENT_SCORES)
+  prospect_scores = recent_scores.get(constants.PROSPECT_RECENT_SCORES)
   highest_prospect_score = _get_highest_score(prospect_scores, _array_utils)
   ret_val[constants.PROSPECT_UPPER_BOUND_SCORE] = highest_prospect_score
 
