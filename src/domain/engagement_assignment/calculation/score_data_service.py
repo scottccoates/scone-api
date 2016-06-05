@@ -33,5 +33,5 @@ def set_client_bounds_score(client, _score_data_repository=None, _array_utils=No
   prospect_scores = recent_scores.get(constants.PROSPECT_RECENT_SCORES)
   highest_prospect_score = _get_highest_score(prospect_scores, _array_utils)
   ret_val[constants.PROSPECT_UPPER_BOUND_SCORE] = highest_prospect_score
-
+  # todo why do we even have a ret_val variable?
   _score_data_repository.save_client_prospect_bounds_score(client, highest_prospect_score)
